@@ -13,33 +13,40 @@ function App() {
 }
 ;
 
- const [values,setValues] = useState(()=>{
+ const [feedback,setFeedback] = useState(()=>{
   return state
   
  }
 )
 const handleIncreaseValues = (feedbackType) =>{
-   setValues({...values, [feedbackType]: values[feedbackType]+1})
+  
+  setFeedback({...feedback, [feedbackType]: feedback[feedbackType]+1})
+  // 1) розпиленням зберігаємо весь об'єкт state(щоб було good,neutral,bad)
+  // 2) динамічно визначаємо яке поле потрібно збільшити(або good,або neutral, або bad)
+  // 3) динамічно перезаписуємо value поля в state
+
 }
+
 
 const resetValues = ()=>{
-  setValues(state)
+  setFeedback(state)
 }
 
 
+// console.log(values);
 
 
 
 
- const totalFeedback = values.good + values.neutral + values.bad;
- const positiveFeedback = Math.round((values.good / totalFeedback) * 100);
+ const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+ const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
   return (
     <>
       <div>
        <Description/>
        <Options handleIncreaseValues ={handleIncreaseValues}  resetValues = {resetValues} totalFeedback = {totalFeedback}/>
         {totalFeedback > 0? (
-         <Feedback values = {values} positiveFeedback ={positiveFeedback} totalFeedback={totalFeedback}/>):(<Notification/>) 
+         <Feedback feedback = {feedback} positiveFeedback ={positiveFeedback} totalFeedback={totalFeedback}/>):(<Notification/>) 
         }
       </div>
     </>

@@ -1,9 +1,9 @@
-const Feedback = ({values,positiveFeedback,totalFeedback}) => {
+const Feedback = ({feedback,positiveFeedback,totalFeedback}) => {
   return (
     <div>
-      <p>Good:{values.good}</p>
-      <p>Neutral:{values.neutral}</p>
-      <p>Bad:{values.bad}</p>
+      <p>Good:{feedback.good}</p>
+      <p>Neutral:{feedback.neutral}</p>
+      <p>Bad:{feedback.bad}</p>
       <p>Total:{totalFeedback}</p>
       <p>Positive:{positiveFeedback}%</p>
     </div>
